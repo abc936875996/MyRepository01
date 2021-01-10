@@ -20,4 +20,7 @@ public interface SetmealDao {
 
     List<String> findImgList();
 
+    List<Setmeal> findSetmealList();
+
+    Setmeal findSetmealDetailById(Integer id);
 }

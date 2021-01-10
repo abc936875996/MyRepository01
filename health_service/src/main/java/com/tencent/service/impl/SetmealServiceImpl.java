@@ -56,4 +56,14 @@ public class SetmealServiceImpl implements SetmealService {
         List<String> imgList =setmealDao.findImgList();
         return imgList;
     }
+
+    @Override
+    public List<Setmeal> findSetmealList() {
+        return setmealDao.findSetmealList();
+    }
+
+    @Override
+    public Setmeal findSetmealDetailById(Integer id) {
+        return setmealDao.findSetmealDetailById(id);
+    }
 }
