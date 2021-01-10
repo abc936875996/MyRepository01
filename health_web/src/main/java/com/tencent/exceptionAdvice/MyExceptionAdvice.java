@@ -1,6 +1,7 @@
 package com.tencent.exceptionAdvice;
 
 import com.tencent.exception.CheckItemUsedException;
+import com.tencent.exception.OrderSettingException;
 import com.tencent.pojo.Result;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,12 +38,20 @@ public class MyExceptionAdvice {
     }
 
     /**
+     * 预约设置异常
+     */
+    @ExceptionHandler(OrderSettingException.class)
+    public Result handleOrderSettingException(OrderSettingException e) {
+        return new Result(false, e.getMessage());
+    }
+
+    /**
      * 未知异常
      */
     @ExceptionHandler(Exception.class)
     public Result handleException(Exception e) {
         //记录异常信息
-        log.error("发生未知异常",e);
+        log.error("发生未知异常", e);
         //友好提示用户
         return new Result(false, "发生未知异常,请联系管理员");
     }

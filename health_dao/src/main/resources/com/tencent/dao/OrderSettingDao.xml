@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tencent.dao.OrderSettingDao">
+    <select id="findByOrderDate" parameterType="orderSetting" resultType="orderSetting">
+        select *
+        from t_ordersetting
+        where orderDate = #{orderDate,jdbcType=DATE}
+    </select>
+
+    <update id="updateSetting" parameterType="orderSetting">
+        update t_ordersetting
+        set number = #{number}
+        where orderDate = #{orderDate,jdbcType=DATE}
+    </update>
+
+    <insert id="insertSetting" parameterType="orderSetting">
+        insert into t_ordersetting (id, orderDate, number, reservations)
+        values (null, #{orderDate,jdbcType=DATE}, #{number}, 0)
+    </insert>
+
+    <select id="findByMonth" parameterType="string" resultType="map">
+        select CAST(DATE_FORMAT(orderdate,'%d') AS SIGNED) date,number,reservations
+        From t_ordersetting where orderDate like #{date}
+    </select>
+</mapper>
