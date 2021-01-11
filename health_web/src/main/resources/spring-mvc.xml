@@ -13,6 +13,7 @@
     <mvc:annotation-driven/>
 
     <import resource="classpath:spring-dubbo.xml"/>
+    <import resource="classpath:spring-redis.xml"/>
 
     <!--文件上传组件-->
     <bean id="multipartResolver"

@@ -53,7 +53,7 @@ public class GenerateStaticHtml {
         configuration.setClassForTemplateLoading(GenerateStaticHtml.class, "/ftl");
     }
 
-    @Scheduled(initialDelay = 3000, fixedDelay = 1800000)
+    @Scheduled(initialDelay = 3000, fixedDelay = 10000)
     public void generateHtml() throws Exception {
         //4.读取redis的ZSet获取套餐操作集合
         Jedis jedis = jedisPool.getResource();
@@ -71,7 +71,7 @@ public class GenerateStaticHtml {
                 //操作符
                 int operation = Integer.parseInt(setmealIdsArr[1]);
                 //存储的时间戳
-                int timestamp = Integer.parseInt(setmealIdsArr[2]);
+                Long timestamp = Long.parseLong(setmealIdsArr[2]);
                 //6.根据操作符判断
                 if (operation == 0) {
                     //7.删除套餐详情页
@@ -109,7 +109,7 @@ public class GenerateStaticHtml {
         //4.文件名
         String filename = "/mobile_setmeal_detail_" + setmealId + "_static.html";
         //5.调用方法生成页面
-        this.generateHtml(templateName, filename, dataMap);
+        this.generateStaticHtml(templateName, filename, dataMap);
     }
 
     /**
@@ -140,10 +140,10 @@ public class GenerateStaticHtml {
         //4.文件名
         String filename = "/mobile_setmeal_static.html";
         //5.调用方法生成页面
-        this.generateHtml(templateName, filename, dataMap);
+        this.generateStaticHtml(templateName, filename, dataMap);
     }
 
-    public void generateHtml(String templateName, String filename, Map<String, Object> dataMap) throws Exception {
+    public void generateStaticHtml(String templateName, String filename, Map<String, Object> dataMap) throws Exception {
         //1.获取模板对象
         Template template = configuration.getTemplate(templateName);
 

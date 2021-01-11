@@ -26,7 +26,7 @@ public class SetmealServiceImpl implements SetmealService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void add(Setmeal setmeal, Integer[] checkgroupIds) {
+    public Integer add(Setmeal setmeal, Integer[] checkgroupIds) {
         //添加套餐
         setmealDao.addSetmeal(setmeal);
         //获得套餐id
@@ -37,6 +37,7 @@ public class SetmealServiceImpl implements SetmealService {
                 setmealDao.addSetmealAndCheckGroup(setmealId, checkgroupId);
             }
         }
+        return setmealId;
     }
 
     @Override

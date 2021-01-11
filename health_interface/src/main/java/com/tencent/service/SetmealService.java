@@ -12,7 +12,7 @@ import java.util.List;
  * @date 2021/1/8 19:28
  */
 public interface SetmealService {
-    void add(Setmeal setmeal, Integer[] checkgroupIds);
+    Integer add(Setmeal setmeal, Integer[] checkgroupIds);
 
     PageResult<Setmeal> findPage(QueryPageBean queryPageBean);
 
