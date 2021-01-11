@@ -41,6 +41,7 @@
         <lombok.version>1.18.16</lombok.version>
         <aliyun.core.version>3.3.1</aliyun.core.version>
         <aliyun.dysmsapi.version>1.0.0</aliyun.dysmsapi.version>
+        <freemarker.version>2.3.23</freemarker.version>
     </properties>
     <!-- 依赖管理标签  必须加 -->
     <dependencyManagement>
@@ -218,6 +219,11 @@
                 <groupId>com.aliyun</groupId>
                 <artifactId>aliyun-java-sdk-dysmsapi</artifactId>
                 <version>${aliyun.dysmsapi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.freemarker</groupId>
+                <artifactId>freemarker</artifactId>
+                <version>${freemarker.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

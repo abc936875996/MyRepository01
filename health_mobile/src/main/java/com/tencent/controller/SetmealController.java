@@ -32,7 +32,7 @@ public class SetmealController {
     }
 
     /**
-     * checkgroup in setmeal.checkGroups checkitem in checkgroup.checkItems
+     * checkgroup in setmeal.checkGroups;checkitem in checkgroup.checkItems
      */
     @GetMapping("/findDetailById")
     public Result findDetailById(Integer id) {
@@ -41,5 +41,4 @@ public class SetmealController {
 
         return new Result(true, MessageConstant.GET_SETMEAL_LIST_SUCCESS, setmeal);
     }
-
 }

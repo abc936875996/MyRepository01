@@ -11,7 +11,7 @@ import java.io.IOException;
  */
 public class ApplicationContext {
     public static void main(String[] args) throws IOException {
-        new ClassPathXmlApplicationContext("classpath:spring-dubbo.xml");
+        new ClassPathXmlApplicationContext("classpath:spring-job.xml");
         System.in.read();
     }
 }

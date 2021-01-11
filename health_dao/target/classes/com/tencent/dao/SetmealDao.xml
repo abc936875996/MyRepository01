@@ -26,6 +26,42 @@
     </select>
 
     <select id="findImgList" resultType="string">
-        select img from t_setmeal
+        select img
+        from t_setmeal
+    </select>
+
+    <select id="findSetmealList" resultType="setmeal">
+        select *
+        from t_setmeal
+    </select>
+
+    <resultMap id="setmealMap" type="setmeal">
+        <id property="id" column="setmeal_id"/>
+        <result property="name" column="name"/>
+        <result property="remark" column="remark"/>
+        <result property="img" column="img"/>
+        <result property="age" column="age"/>
+        <result property="sex" column="sex"/>
+
+        <collection property="checkGroups" ofType="CheckGroup">
+            <id property="id" column="checkgroup_id"/>
+            <result property="name" column="name"/>
+            <result property="remark" column="remark"/>
+
+            <collection property="checkItems" ofType="CheckItem">
+                <id property="id" column="id"/>
+                <result property="name" column="name"/>
+            </collection>
+        </collection>
+    </resultMap>
+
+    <select id="findSetmealDetailById" parameterType="int" resultMap="setmealMap">
+        select *
+        from t_setmeal s
+                 left join t_setmeal_checkgroup sg on s.id = sg.setmeal_id
+                 left join t_checkgroup g on sg.checkgroup_id = g.id
+                 left join t_checkgroup_checkitem gi on g.id = gi.checkgroup_id
+                 left join t_checkitem i on gi.checkitem_id = i.id
+        where s.id = #{id}
     </select>
 </mapper>

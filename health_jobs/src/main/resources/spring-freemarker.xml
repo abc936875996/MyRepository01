@@ -1,0 +1,17 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 静态工厂获得Version对象 -->
+    <bean class="freemarker.template.Configuration" factory-method="getVersion" id="version"/>
+
+    <!-- 注册freemarkerConfiguration -->
+    <bean class="freemarker.template.Configuration" id="freemarkerConfiguration">
+        <!-- 构造方法DI:Configuration.getVersion() -->
+        <constructor-arg index="0" ref="version"/>
+    </bean>
+
+    <import resource="classpath:spring-redis.xml"/>
+</beans>

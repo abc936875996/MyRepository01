@@ -18,7 +18,7 @@ public class CleanImgJob {
     @Reference
     private SetmealService setmealService;
 
-    @Scheduled(initialDelay = 10000, fixedDelay = 60000)
+//    @Scheduled(initialDelay = 10000, fixedDelay = 60000)
     public void cleanImg() {
         //查询db获取图片名集合
         List<String> imgList = setmealService.findImgList();
