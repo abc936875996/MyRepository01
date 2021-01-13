@@ -11,10 +11,7 @@ import com.tencent.utils.QiNiuUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
@@ -72,9 +69,9 @@ public class SetmealController {
         String key = "setmeal:static:html";
         Long currentTimeMillis = System.currentTimeMillis();
         int OPERATION_ADD = 1;
-        String task =setmealId + "|" + OPERATION_ADD + "|" + currentTimeMillis;
+        String task = setmealId + "|" + OPERATION_ADD + "|" + currentTimeMillis;
         jedis.zadd(key, currentTimeMillis.doubleValue(), task);
-        log.debug("向redis中添加了任务:"+task);
+        log.debug("向redis中添加了任务:" + task);
 
         Result result = new Result(true, MessageConstant.ADD_SETMEAL_SUCCESS);
         return result;
@@ -84,6 +81,13 @@ public class SetmealController {
     public Result findPage(@RequestBody QueryPageBean queryPageBean) {
         PageResult<Setmeal> pageResult = setmealService.findPage(queryPageBean);
         Result result = new Result(true, MessageConstant.QUERY_SETMEAL_SUCCESS, pageResult);
+        return result;
+    }
+
+    @GetMapping("/findById")
+    public Result findById(@RequestParam("id") int id) {
+        Setmeal setmeal = setmealService.findById(id);
+        Result result = new Result(true, MessageConstant.QUERY_SETMEAL_SUCCESS, setmeal);
         return result;
     }
 }

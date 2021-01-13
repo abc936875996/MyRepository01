@@ -2,6 +2,7 @@ package com.tencent.dao;
 
 import com.tencent.pojo.OrderSetting;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -21,6 +22,7 @@ public interface OrderSettingDao {
     /**
      * 更新记录
      * @param orderSetting
+     * @return
      */
     void updateSetting(OrderSetting orderSetting);
 
@@ -31,4 +33,11 @@ public interface OrderSettingDao {
     void insertSetting(OrderSetting orderSetting);
 
     List<Map<String, Integer>> findByMonth(String date);
+
+    /**
+     * 添加预约人数
+     * @param orderDate
+     * @return
+     */
+    Integer addReservations(Date orderDate);
 }

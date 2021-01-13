@@ -67,4 +67,9 @@ public class SetmealServiceImpl implements SetmealService {
     public Setmeal findSetmealDetailById(Integer id) {
         return setmealDao.findSetmealDetailById(id);
     }
+
+    @Override
+    public Setmeal findById(Integer id) {
+        return setmealDao.findById(id);
+    }
 }

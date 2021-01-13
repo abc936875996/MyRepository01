@@ -8,10 +8,12 @@
     <context:component-scan base-package="com.tencent"/>
 
     <!--  注册全局异常处理器 由springmvc自动装载 annotation-driven  -->
-<!--    <bean class="com.tencent.exceptionAdvice.MyExceptionAdvice"/>-->
+    <bean class="com.tencent.exceptionAdvice.MobileExceptionAdvice"/>
 
     <mvc:annotation-driven/>
 
     <import resource="classpath:spring-dubbo.xml"/>
+
+    <import resource="classpath:spring-redis.xml"/>
 
 </beans>

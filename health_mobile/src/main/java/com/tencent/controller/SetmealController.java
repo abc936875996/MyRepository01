@@ -41,4 +41,11 @@ public class SetmealController {
 
         return new Result(true, MessageConstant.GET_SETMEAL_LIST_SUCCESS, setmeal);
     }
+
+    @GetMapping("/findById")
+    public Result findById(int id) {
+        Setmeal setmeal = setmealService.findById(id);
+        setmeal.setImg(QiNiuUtils.DOMAIN + setmeal.getImg());
+        return new Result(true, MessageConstant.GET_SETMEAL_LIST_SUCCESS, setmeal);
+    }
 }

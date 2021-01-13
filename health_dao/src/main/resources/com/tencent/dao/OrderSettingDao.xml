@@ -21,7 +21,15 @@
     </insert>
 
     <select id="findByMonth" parameterType="string" resultType="map">
-        select CAST(DATE_FORMAT(orderdate,'%d') AS SIGNED) date,number,reservations
-        From t_ordersetting where orderDate like #{date}
+        select CAST(DATE_FORMAT(orderdate, '%d') AS SIGNED) date,number,reservations
+        From t_ordersetting
+        where orderDate like #{date}
     </select>
+
+    <update id="addReservations" parameterType="date">
+        update t_ordersetting
+        set reservations = reservations + 1
+        where orderDate = #{orderDate,jdbcType=DATE}
+        and number > reservations
+    </update>
 </mapper>

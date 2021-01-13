@@ -42,6 +42,7 @@ public interface MessageConstant {
     static final String TELEPHONE_VALIDATECODE_NOTNULL = "手机号和验证码都不能为空";
     static final String LOGIN_SUCCESS = "登录成功";
     static final String VALIDATECODE_ERROR = "验证码输入错误";
+    static final String VALIDATECODE_EXPIRED = "验证码已过期，请重新获取";
     static final String QUERY_ORDER_SUCCESS = "查询预约信息成功";
     static final String QUERY_ORDER_FAIL = "查询预约信息失败";
     static final String QUERY_SETMEALLIST_SUCCESS = "查询套餐列表数据成功";
@@ -50,8 +51,9 @@ public interface MessageConstant {
     static final String QUERY_SETMEAL_FAIL = "查询套餐数据失败";
     static final String SEND_VALIDATECODE_FAIL = "验证码发送失败";
     static final String SEND_VALIDATECODE_SUCCESS = "验证码发送成功";
+    static final String SEND_VALIDATECODE_ALREADY = "验证码已经发送到您的手机，请注意查收";
     static final String SELECTED_DATE_CANNOT_ORDER = "所选日期不能进行体检预约";
-    static final String ORDER_FULL = "预约已满";
+    static final String ORDER_FULL = "所选日期预约已满，请更改为其他日期";
     static final String HAS_ORDERED = "已经完成预约，不能重复预约";
     static final String ORDER_SUCCESS = "预约成功";
     static final String GET_USERNAME_SUCCESS = "获取当前登录用户名称成功";

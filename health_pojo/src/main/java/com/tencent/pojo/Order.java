@@ -18,6 +18,24 @@ public class Order implements Serializable{
     private String orderStatus;//预约状态（是否到诊）
     private Integer setmealId;//体检套餐id
 
+    public static String getOrdertypeTelephone() {
+        return ORDERTYPE_TELEPHONE;
+    }
+
+    public static String getOrdertypeWeixin() {
+        return ORDERTYPE_WEIXIN;
+    }
+
+    public static String getOrderstatusYes() {
+        return ORDERSTATUS_YES;
+    }
+
+    public static String getOrderstatusNo() {
+        return ORDERSTATUS_NO;
+    }
+
+
+
     public Order() {
     }
 

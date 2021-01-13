@@ -26,25 +26,22 @@
             <!-- 页面头部 -->
             <div class="top-header">
                 <span class="f-left"><i class="icon-back" onclick="history.go(-1)"></i></span>
-                <span class="   center">传智健康</span>
+                <span class="center">传智健康</span>
                 <span class="f-right"><i class="icon-more"></i></span>
             </div>
             <!-- 页面内容 -->
             <div class="contentBox">
                 <div class="card">
                     <div class="">
-                        <img :src="setmeal.img" width="100%" height="100%" />
+                        <img src="${setmeal.img}" width="100%" height="100%" />
                     </div>
                     <div class="project-text">
-                        <h4 class="tit">{{setmeal.name}}</h4>
-                        <p class="subtit">{{setmeal.remark}}</p>
-                        <p class="keywords">
-                            <span>{{setmeal.sex == '0' ? '性别不限' : setmeal.sex == '1' ? '男':'女'}}</span>
-                            <span>{{setmeal.age}}</span>
-                        </p>
+                        <h4 class="tit">${setmeal.name}</h4>
+                        <p class="subtit">${setmeal.remark}</p>
+                        <p class="keywords"><span>女</span><span>20-70</span></p>
                     </div>
                     <div class="project-know">
-                        <a href="orderNotice.html" class="link-page">
+                        <a href="${orderNotice.html}" class="link-page">
                             <i class="icon-ask-circle"><span class="path1"></span><span class="path2"></span></i>
                             <span class="word">预约须知</span>
                             <span class="arrow"><i class="icon-rit-arrow"></i></span>
@@ -58,7 +55,7 @@
                     <form class="info-form">
                         <div class="input-row">
                             <label>体检人</label>
-                            <input v-model="orderInfo.name" type="text" class="input-clear" placeholder="请输入姓名">
+                            <input name="orderInfo.name" type="text" class="input-clear" placeholder="请输入姓名">
                         </div>
                         <div class="input-row single-radio">
                             <label class="radio-title">性别</label>
@@ -101,23 +98,20 @@
             </div>
         </div>
         <script>
-            var id = getUrlParam("id");
-
             var vue = new Vue({
                 el:'#app',
                 data:{
                     setmeal:{},//套餐信息
                     orderInfo:{
                         setmealId:id,
-                        sex:'1',
-                        orderType:'微信预约'
-                    },//预约信息
+                        sex:'1'
+                    }//预约信息
                 },
                 methods:{
                     //发送验证码
                     sendValidateCode(){
                         //获取用户输入的手机号
-                        let telephone = this.orderInfo.telephone;
+                        var telephone = this.orderInfo.telephone;
                         //校验手机号输入是否正确
                         if (!checkTelephone(telephone)) {
                             this.$message.error('请输入正确的手机号');
@@ -125,13 +119,10 @@
                         }
                         validateCodeButton = $("#validateCodeButton")[0];
                         clock = window.setInterval(doLoop, 1000); //一秒执行一次
-                        axios.get("/validateCode/send4Order.do?telephone=" + telephone).then((response) => {
-                            if(response.data.flag){
-                                //验证码发送成功
-                                this.$message.success(response.data.message);
-                            }else {
+                        axios.post("/validateCode/send4Order.do?telephone=" + telephone).then((response) => {
+                            if(!response.data.flag){
                                 //验证码发送失败
-                                this.$message.error(response.data.message);
+                                this.$message.error('验证码发送失败，请检查手机号输入是否正确');
                             }
                         });
                     },
@@ -154,8 +145,8 @@
                     }
                 },
                 mounted(){
-                    axios.get("/setmeal/findById.do?id=" + id).then(res=> {
-                        this.setmeal = res.data.data;
+                    axios.post("/setmeal/findById.do?id=" + id).then((response) => {
+                        this.setmeal = response.data.data;
                     });
                 }
             });
